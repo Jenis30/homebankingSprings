@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AccountDto {
+public class AccountDTO {
 
     private Long id;
     private String number;
@@ -14,7 +14,7 @@ public class AccountDto {
     private double balance;
     private Set<TransactionDTO> transactions;
 
-    public AccountDto(Account account) {
+    public AccountDTO(Account account) {
         number = account.getNumber();
         id = account.getId();
         creationDate = account.getCreationDate();

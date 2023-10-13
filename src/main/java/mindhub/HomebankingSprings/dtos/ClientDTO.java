@@ -1,7 +1,7 @@
 package mindhub.HomebankingSprings.dtos;
 
-import mindhub.HomebankingSprings.models.Account;
 import mindhub.HomebankingSprings.models.Client;
+import mindhub.HomebankingSprings.models.Loan;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,14 +11,15 @@ public class ClientDTO {
         private String firstNane ;
         private String lastName ;
         private String email;
-        private Set<AccountDto> accounts;
-
+        private Set<AccountDTO> accounts;
+        private Set<ClientLoanDTO>loans;
         public ClientDTO(Client client){
             this.id = client.getId();
             this.firstNane = client.getFirstName();
             this.lastName = client.getLastName();
             this.email = client.getEmail();
-            this.accounts= client.getAccounts().stream().map(account -> new AccountDto(account)).collect(Collectors.toSet());
+            this.accounts= client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+            this.loans = client.getClientLoans().stream().map(Loan -> new ClientLoanDTO(Loan)).collect(Collectors.toSet());
         }
 
         public String getFirstNane() {
@@ -33,11 +34,11 @@ public class ClientDTO {
         return id;
     }
 
-    public Set<AccountDto> getAccounts() {
+    public Set<AccountDTO> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<AccountDto> accounts) {
+    public void setAccounts(Set<AccountDTO> accounts) {
         this.accounts = accounts;
     }
 
@@ -60,5 +61,11 @@ public class ClientDTO {
         public void setEmail(String email) {
             this.email = email;
         }
+
+
+
+    public Set<ClientLoanDTO> getLoans() {
+        return loans;
     }
+}
 

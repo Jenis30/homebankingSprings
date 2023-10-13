@@ -1,7 +1,7 @@
 package mindhub.HomebankingSprings.controllers;
 
 
-import mindhub.HomebankingSprings.dtos.AccountDto;
+import mindhub.HomebankingSprings.dtos.AccountDTO;
 import mindhub.HomebankingSprings.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
         private AccountRepository accountRepository;
 
         @GetMapping("/accounts") //indico que tipo de peticion manejara este servlet y la ruta para el mismo
-        public Set<AccountDto> getAccounts (){
-            return accountRepository.findAll().stream().map(account -> new AccountDto(account)).collect(Collectors.toSet());
+        public Set<AccountDTO> getAccounts (){
+            return accountRepository.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
         }
 
         @GetMapping("/account/{id}")
-        public AccountDto getAccount (@PathVariable Long id){//Esta anotación se usa para extraer valores de variables de ruta
-            return accountRepository.findById(id).map(account -> new AccountDto(account)).orElse(null);
+        public AccountDTO getAccount (@PathVariable Long id){//Esta anotación se usa para extraer valores de variables de ruta
+            return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
         }
 }
