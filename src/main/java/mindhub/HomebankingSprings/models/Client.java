@@ -8,25 +8,29 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Entity
+@Entity // clase o entidad
 public class Client {
 
     //Propiedades  o atributos se representan como columnas en la base de datos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native") // la base de datos decide como generar el ID
     private long id;
     private String firstName, lastName, email;
 
-    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER) // mappeBy es relacionar por
     private Set<Account>accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
     private Set<ClientLoan>clientLoans = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Card>cards = new HashSet<>();
+
     //Construtores
 
-    public Client() {
+    public Client() {  //sobrecarga de metodos
 
     }
     public Client(String firstName, String lastName, String email) {
@@ -68,9 +72,29 @@ public class Client {
         return accounts;
     }
 
-    public void addAccount(Account account){
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addAccount(Account account){ // nos vincula el cliente con la cuenta
         account.setClient(this);
         accounts.add(account);
+    }
+    public void addCard(Card card){
+       card.setClient(this);
+       cards.add(card);
     }
 
     public Set<ClientLoan> getClientLoans() {

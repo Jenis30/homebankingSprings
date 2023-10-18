@@ -19,6 +19,7 @@ public class Account {
     private double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="client_id") //clave foranea
     private Client client;
 
     @OneToMany(mappedBy="account", fetch = FetchType.EAGER)

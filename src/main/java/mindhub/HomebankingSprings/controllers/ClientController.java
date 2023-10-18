@@ -19,11 +19,11 @@ public class ClientController {
 @Autowired // para utilizar repositorio
 private ClientRepository clientRepository;
 @GetMapping("/client")  //indico que tipo de peticion manejara este servlet y la ruta para el mismo
-    public Set<ClientDTO>getAccounts(){
+    public Set<ClientDTO>getClients(){
     return clientRepository.findAll().stream().map(client -> new ClientDTO(client)).collect(Collectors.toSet());
 }
 @GetMapping("/client/{id}")
-    public ClientDTO getAccount(@PathVariable Long id){ //Esta anotación se usa para extraer valores de variables de ruta
+    public ClientDTO getClient(@PathVariable Long id){ //Esta anotación se usa para extraer valores de variables de ruta
     return clientRepository.findById(id).map(client -> new ClientDTO(client)).orElse(null);
 }
 }

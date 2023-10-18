@@ -21,7 +21,7 @@ public class HomebankingSpringsApplication {
 		SpringApplication.run(HomebankingSpringsApplication.class, args);
 	}
 	@Bean
-		public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository){
+		public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository,CardRepository cardRepository){
 
 		return args -> {
 			LocalDateTime dateTime = LocalDateTime.now();
@@ -93,8 +93,16 @@ public class HomebankingSpringsApplication {
 			loanAutomation.addClientLoan(clientLoanFoor);
 			clientLoanRepository.save(clientLoanFoor);
 
+			Card card1 = new Card("Melba Morel","1785-4354-3742-4332","123",LocalDate.now(),LocalDate.now().plusYears(5), CardType.DEBIT,CardColor.GOLD);
+			Card card2 = new Card("Melba Morel","8654-4377-3732-9832","654",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.TITANIUM);
+			Card card3 = new Card("Jennys Guzman","7756-4354-3562-6545","976",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.SILVER);
 
-
+			client.addCard(card1);
+			client.addCard(card2);
+			client1.addCard(card3);
+			cardRepository.save(card1);
+			cardRepository.save(card2);
+			cardRepository.save(card3);
 		};
 
 		}
