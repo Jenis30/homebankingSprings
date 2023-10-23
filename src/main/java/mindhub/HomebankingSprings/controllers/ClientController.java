@@ -39,7 +39,7 @@ private ClientRepository clientRepository;
 
             @RequestParam String email, @RequestParam String password) {
 
-        if (name.isBlank() ||  lastName.isBlank() || email.isBlank() || password.isEmpty()) {
+        if (name.isEmpty() ||  lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
@@ -51,7 +51,7 @@ private ClientRepository clientRepository;
         return new ResponseEntity<>("User Created", HttpStatus.CREATED);
 
     }
-    @RequestMapping("/current")
+    @RequestMapping("/clients/current")
     public ClientDTO getCurrentClient(Authentication authentication) {
         if (authentication != null) {
             String email = authentication.getName(); // Utiliza getName() para obtener el email.

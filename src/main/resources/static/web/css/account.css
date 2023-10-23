@@ -1,0 +1,42 @@
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.6rem;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+.card{
+    width: 17rem !important;
+}
+.card-text{
+    font-size: 1rem !important;
+}
+@media (min-width: 768px) {
+    td , th{
+        font-size: 1rem ;
+    }
+
+    .card{
+        width: 23rem !important;
+    }
+    .card-text{
+        font-size: 1.5rem !important;
+    }
+}
