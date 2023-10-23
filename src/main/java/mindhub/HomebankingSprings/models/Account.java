@@ -32,12 +32,11 @@ public class Account {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
-
     }
 
-    public void addTransaction(Transaction transaction){//Este metodo recibe una cuenta(objeto) de la clase Account
-        transaction.setAccount(this) ;//Le Asigno la cuenta al cliente que este llamando este metodo
-        transactions.add(transaction); //A la propiedad accounts de esta clase, le vamos a agregar la cuenta que recibimos por parametro
+    public void addTransaction(Transaction transaction){
+        transaction.setAccount(this) ;
+        transactions.add(transaction);
     }
     public long getId() {
         return id;
@@ -63,9 +62,7 @@ public class Account {
         return client;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+    public void setClient(Client client) {this.client = client;}
 
     public double getBalance() {
         return balance;

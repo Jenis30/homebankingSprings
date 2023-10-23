@@ -2,10 +2,12 @@ package mindhub.HomebankingSprings;
 
 import mindhub.HomebankingSprings.models.*;
 import mindhub.HomebankingSprings.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,7 +17,8 @@ import static mindhub.HomebankingSprings.models.TransactionType.*;
 
 @SpringBootApplication
 public class HomebankingSpringsApplication {
-
+	@Autowired
+	private PasswordEncoder passwordEnconder;
 	public static void main(String[] args)
 	{
 		SpringApplication.run(HomebankingSpringsApplication.class, args);
@@ -25,16 +28,16 @@ public class HomebankingSpringsApplication {
 
 		return args -> {
 			LocalDateTime dateTime = LocalDateTime.now();
-			Client client = new Client("Melba", "Morel", " melba@mindhub.com");
+			Client melba = new Client("Melba", "Morel", " melba@mindhub.com",passwordEnconder.encode("contraseña"));
+			clientRepository.save(melba);
 
-			clientRepository.save(client);
 			Account account = new Account("VIN001", LocalDate.now(),5000.00);
-			client.addAccount(account);
+			melba.addAccount(account);
 			accountRepository.save(account);
 
 			LocalDate date = LocalDate.now();
 			Account account1 = new Account("VIN002",date.plusDays(1), 7500.00);
-			client.addAccount(account1);
+			melba.addAccount(account1);
 			accountRepository.save(account1);
 
 			Transaction Primer = new Transaction(CREDIT, "Pay Taxes" , dateTime, 455333.33);
@@ -58,7 +61,7 @@ public class HomebankingSpringsApplication {
 
 			ClientLoan clientLoanOne = new ClientLoan(400000.00,60);
 			clientLoanRepository.save(clientLoanOne);
-			client.addClientLoan(clientLoanOne);
+			melba.addClientLoan(clientLoanOne);
 
 			loanMortgage.addClientLoan(clientLoanOne);
 			clientLoanRepository.save(clientLoanOne);
@@ -66,13 +69,13 @@ public class HomebankingSpringsApplication {
 
 			ClientLoan clientLoanTwo = new ClientLoan(50000.00,12);
 			clientLoanRepository.save(clientLoanTwo);
-			client.addClientLoan(clientLoanTwo);
+			melba.addClientLoan(clientLoanTwo);
 
 			loanPersonal.addClientLoan(clientLoanTwo);
 			clientLoanRepository.save(clientLoanTwo);
 
 
-			Client client1 = new Client("jennys", "guzman", " jennys@gmail.com");
+			Client client1 = new Client("jennys", "guzman", " jennys@gmail.com",passwordEnconder.encode("contraseña"));
 			clientRepository.save(client1);
 
 			Account account2 = new Account("Vin003" , date, 8000.00);
@@ -81,14 +84,14 @@ public class HomebankingSpringsApplication {
 
 			ClientLoan clientLoantree = new  ClientLoan (100.00, 24);
 			clientLoanRepository.save(clientLoantree);
-			client.addClientLoan(clientLoantree);
+			melba.addClientLoan(clientLoantree);
 
 			loanPersonal.addClientLoan(clientLoantree);
 			clientLoanRepository.save(clientLoantree);
 
 			ClientLoan clientLoanFoor = new ClientLoan(200.000, 36);
 			clientLoanRepository.save(clientLoanFoor);
-			client.addClientLoan(clientLoanFoor);
+			melba.addClientLoan(clientLoanFoor);
 
 			loanAutomation.addClientLoan(clientLoanFoor);
 			clientLoanRepository.save(clientLoanFoor);
@@ -97,8 +100,8 @@ public class HomebankingSpringsApplication {
 			Card card2 = new Card("Melba Morel","8654-4377-3732-9832","654",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.TITANIUM);
 			Card card3 = new Card("Jennys Guzman","7756-4354-3562-6545","976",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.SILVER);
 
-			client.addCard(card1);
-			client.addCard(card2);
+			melba.addCard(card1);
+			melba.addCard(card2);
 			client1.addCard(card3);
 			cardRepository.save(card1);
 			cardRepository.save(card2);

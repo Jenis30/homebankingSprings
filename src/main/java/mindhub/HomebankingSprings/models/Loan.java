@@ -19,7 +19,7 @@ public class Loan {
     private Long id;
     private String name;
     private Double maxAmount;
-    @ElementCollection
+    @ElementCollection  // hace una relacion de uno a muchos automaticamente evitando hacer una clase payments (payments es una propiedad multivaluada)
     private List<Integer> payments;
 
     @OneToMany(mappedBy = "loan" , fetch = FetchType.EAGER)
