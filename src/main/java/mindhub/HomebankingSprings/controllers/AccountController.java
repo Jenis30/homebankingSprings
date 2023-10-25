@@ -4,10 +4,8 @@ package mindhub.HomebankingSprings.controllers;
 import mindhub.HomebankingSprings.dtos.AccountDTO;
 import mindhub.HomebankingSprings.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,4 +26,5 @@ import java.util.stream.Collectors;
         public AccountDTO getAccount (@PathVariable Long id){//Esta anotación se usa para extraer valores de variables de ruta
             return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
         }
+
 }

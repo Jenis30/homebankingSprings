@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
 public class ClientController {
 @Autowired
 private ClientRepository clientRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 @GetMapping("/clients")
     public Set<ClientDTO>getClients(){
     return clientRepository.findAll().stream().map(client -> new ClientDTO(client)).collect(Collectors.toSet());
@@ -27,42 +30,39 @@ private ClientRepository clientRepository;
     public ClientDTO getClient(@PathVariable Long id){ // captura la parte variable de la url
     return clientRepository.findById(id).map(client -> new ClientDTO(client)).orElse(null);
 }
-    @Autowired
-
-    private PasswordEncoder passwordEncoder;
-
-    @RequestMapping(path = "/clients", method = RequestMethod.POST)
-
-    public ResponseEntity<?> register(
-
-            @RequestParam String name, @RequestParam String lastName,
-
-            @RequestParam String email, @RequestParam String password) {
-
-        if (name.isEmpty() ||  lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        @GetMapping("/clients/current")
+        public ClientDTO getAll(Authentication authentication){
+        return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
         }
+        @RequestMapping(path = "/clients", method = RequestMethod.POST)
 
-        if (clientRepository.findByEmail(email) != null) {
-            return new ResponseEntity<>("Email in use", HttpStatus.FORBIDDEN);
-        }
+        public ResponseEntity<Object> register(
 
-        clientRepository.save(new Client(name, lastName, email, passwordEncoder.encode(password)));
-        return new ResponseEntity<>("User Created", HttpStatus.CREATED);
+                @RequestParam String firstName, @RequestParam String lastName,
 
-    }
-    @RequestMapping("/clients/current")
-    public ClientDTO getCurrentClient(Authentication authentication) {
-        if (authentication != null) {
-            String email = authentication.getName(); // Utiliza getName() para obtener el email.
-            Client client = clientRepository.findByEmail(email);
-            if (client != null) {
-                // Convierte el objeto Client a un ClientDTO si es necesario.
-                // Supongo que tienes una lógica para esto.
-                ClientDTO clientDTO = new ClientDTO(client);
-                return clientDTO;
+                @RequestParam String email, @RequestParam String password) {
+
+
+            if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+
+                return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+
             }
+
+
+            if (clientRepository.findByEmail(email) != null) {
+
+                return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+
+            }
+            Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+
+            clientRepository.save(client);
+
+            return new ResponseEntity<>(HttpStatus.CREATED);
+
+
         }
-        return null;
     }
-}
+
+

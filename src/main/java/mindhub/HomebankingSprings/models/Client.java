@@ -24,6 +24,7 @@ public class Client {
     private String password;
 
 
+
     // metodos accesores protegemos los datos de acuerdo a lo que necesitemos
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER) // me muestra el cliente con las cuentas y lazi solo me muestra el cliente sin las cuentas
@@ -46,6 +47,7 @@ public class Client {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+
     }
 
 //metodos accesores o comportamientos geter obtener y seter asigna un valor

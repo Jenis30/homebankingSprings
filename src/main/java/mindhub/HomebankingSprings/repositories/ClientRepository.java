@@ -6,5 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource  //con esta anotacion  exponemos  los datos utilizando el servicio rest a traves de peticiones http
 public interface ClientRepository extends JpaRepository<Client,Long> {
+
     Client findByEmail(String email);
+
 }

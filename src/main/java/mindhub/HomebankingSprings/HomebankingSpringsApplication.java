@@ -28,7 +28,7 @@ public class HomebankingSpringsApplication {
 
 		return args -> {
 			LocalDateTime dateTime = LocalDateTime.now();
-			Client melba = new Client("Melba", "Morel", " melba@mindhub.com",passwordEnconder.encode("contraseña"));
+			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("123"));
 			clientRepository.save(melba);
 
 			Account account = new Account("VIN001", LocalDate.now(),5000.00);
@@ -75,7 +75,7 @@ public class HomebankingSpringsApplication {
 			clientLoanRepository.save(clientLoanTwo);
 
 
-			Client client1 = new Client("jennys", "guzman", " jennys@gmail.com",passwordEnconder.encode("contraseña"));
+			Client client1 = new Client("jennys", "guzman", "jennys@creditbank.com", passwordEnconder.encode("1234"));
 			clientRepository.save(client1);
 
 			Account account2 = new Account("Vin003" , date, 8000.00);

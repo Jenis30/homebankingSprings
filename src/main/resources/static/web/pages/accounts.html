@@ -49,7 +49,7 @@
 
     </header>
     <main class="d-flex flex-column align-items-center">
-      <h1 class="pt-4">Welcom, Melba!</h1>
+      <h1 class="pt-4">Welcom, {{client.firstName}}!</h1>
       <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
         <div v-for="account of accounts " class="card" style="width: 18rem;">
           <div class="card-body ">
@@ -70,7 +70,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="loan of loans" v-if="" class="cuerpo">
+          <tr v-for="loan of loans">
             <td>{{loan.nameLoan}}</td>
             <td>{{loan.amount}}</td>
             <td>{{loan.payments}}</td>

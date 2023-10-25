@@ -7,8 +7,6 @@ createApp({
             inputLastName: "",
             inputPassword: "",
             inputEmail: "",
-            loginEmail: "",
-            loginPassword: "",
         };
     },
     created() {
@@ -16,19 +14,14 @@ createApp({
     },
     methods: {
         register() {
-            console.log(this.inputEmail, this.inputName)
             axios.post("/api/clients",
-                `name=${this.inputName}&lastName=${this.inputLastName}&email=${this.inputEmail}&password=${this.inputPassword}`
+                `firstName=${this.inputName}&lastName=${this.inputLastName}&email=${this.inputEmail}&password=${this.inputPassword}`
             )
-                .then((response) => {
-                    // this.clearData();
-                    console.log(response)
-                    axios.post("/app/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
-                        .then((response) => {
-                            console.log(response)
-                            location.href = "http://localhost:8080/index.html"
+                .then(() => {
+                    axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`)
+                        .then(() => {                    
+                            location.pathname = "/WEB/pages/accounts.html"
                         }).catch((err) => console.log(err))
-
 
                 })
                 .catch((err) => console.log(err));
@@ -39,18 +32,12 @@ createApp({
                 this.inputPassword = "";
             this.inputEmail = "";
         },
-        login() {
-            axios.post("/app/login", `email=${this.loginEmail}&password=${this.loginPassword}`)
-                .then((response) => {
-                    console.log(response)
-                    location.href = "http://localhost:8080/Web/Pages/accounts.html"
-                }).catch((err) => console.log(err))
-        },
+      
         signOut() {
-            axios.post("/app/logout")
+            axios.post("/api/logout")
                 .then((response) => {
                     console.log(response)
-                    location.href = "http://localhost:8080/web/index.html"
+                    location.pathname = "/WEB/index.html"
                 }).catch((err) => console.log(err))
         }
     },

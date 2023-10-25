@@ -10,6 +10,13 @@ th, td {
     text-align: left;
     font-size: 0.6rem;
 }
+ tbody tr.debit td{
+    background-color: rgba(139, 243, 70, 0.781) !important;
+ }
+
+ tbody tr.credit td{
+    background-color: rgba(228, 101, 92, 0.781) !important;
+ }
 
 th {
     background-color: #f2f2f2;

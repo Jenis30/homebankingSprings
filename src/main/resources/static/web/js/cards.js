@@ -28,7 +28,7 @@ const { createApp } = Vue;
       axios.post("/app/logout")
           .then((response) => {
               console.log(response)
-              location.href = "http://localhost:8080/web/index.html"
+              location.href = "http://localhost:8080/WEB/index.html"
           }).catch((err) => console.log(err))
   }
     }

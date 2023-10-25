@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ClientDTO {
         private long id;
-        private String firstNane ;
+        private String firstName ;
         private String lastName ;
         private String email;
          private String password;
@@ -18,7 +18,7 @@ public class ClientDTO {
         private Set<CardDTO>cards;
         public ClientDTO(Client client){
             this.id = client.getId(); // asigno el ID del client que estoy pasando por parametro a traves del metodo get
-            this.firstNane = client.getFirstName();
+            this.firstName = client.getFirstName();
             this.lastName = client.getLastName();
             this.email = client.getEmail();
             this.password = client.getPassword();
@@ -27,8 +27,8 @@ public class ClientDTO {
             this.cards = client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());
         }
 
-        public String getFirstNane() {
-            return firstNane;
+        public String getFirstName() {
+            return firstName;
         }
 
     public long getId() {
