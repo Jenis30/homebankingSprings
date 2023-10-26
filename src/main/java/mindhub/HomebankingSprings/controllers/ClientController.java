@@ -1,6 +1,8 @@
 package mindhub.HomebankingSprings.controllers;
 
+import mindhub.HomebankingSprings.dtos.AccountDTO;
 import mindhub.HomebankingSprings.dtos.ClientDTO;
+import mindhub.HomebankingSprings.models.Account;
 import mindhub.HomebankingSprings.models.Client;
 import mindhub.HomebankingSprings.repositories.AccountRepository;
 import mindhub.HomebankingSprings.repositories.ClientRepository;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,6 +24,8 @@ public class ClientController {
 private ClientRepository clientRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AccountRepository accountRepository;
 
 @GetMapping("/clients")
     public Set<ClientDTO>getClients(){
@@ -56,13 +61,30 @@ private ClientRepository clientRepository;
 
             }
             Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+            Account account = new Account(generateNumber(1 , 100000000), LocalDate.now(),  0);
+            accountRepository.save(account);
+            client.addAccount(account);
 
             clientRepository.save(client);
 
             return new ResponseEntity<>(HttpStatus.CREATED);
 
-
         }
+    public String generateNumber(int min, int max){
+        Set<AccountDTO> accounts = accountRepository.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+        Set<String> numberAccount = accounts.stream().map(account ->account.getNumber()).collect(Collectors.toSet());
+
+        String aux = "VIN";
+        long number;
+        String numberComplete;
+        do {
+            number = (int) ((Math.random() * (max - min)) + min);
+            String numberFormat = String.format("%03d", number);
+            numberComplete = aux + number;
+        }while (numberAccount.contains(numberComplete));
+        return numberComplete;
+
+    }
     }
 
 

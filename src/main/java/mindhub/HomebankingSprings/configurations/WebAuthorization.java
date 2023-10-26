@@ -23,7 +23,6 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                         .antMatchers("/WEB/imagenes").permitAll()
                         .antMatchers("/WEB/pages/login").permitAll();
 
-
         http.formLogin()
 
                 .usernameParameter("email")

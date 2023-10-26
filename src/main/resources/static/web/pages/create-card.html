@@ -48,37 +48,27 @@
       </nav>
 
     </header>
-    <main class="d-flex flex-column align-items-center">
-      <h1 class="pt-4">Welcom, {{client.firstName}}!</h1>
-      <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-        <div v-for="account of accounts " class="card" style="width: 18rem;">
-          <div class="card-body ">
-            <h3 class="card-title textCard">Numero de cuenta:{{account.number}}</h3>
-            <h4 class="card-subtitle mb-2 text-body-secondary textCard">Monto:${{account.balance}}</h4>
-            <h5 class="card-subtitle mb-2 text-body-secondary textCard">Fecha de creacion:{{account.creationDate}}</h5>
-            <a v-bind:href="'./account.html?id=' + account.id">ir</a>
 
-          </div>
-        </div>
-      </div>
-      <button @click="createAccount" v-if="accounts.length < 3 ">Create account</button>
-
-      <table>
-        <thead>
-          <tr class="encabezados">
-            <th>Type</th>
-            <th>Amount</th>
-            <th>N° Quotas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="loan of loans">
-            <td>{{loan.nameLoan}}</td>
-            <td>{{loan.amount}}</td>
-            <td>{{loan.payments}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <main class="container mt-4">
+        <h2>Formulario de Tarjeta</h2>
+        <form>
+            <div class="form-group">
+                <label for="colorTarjeta">Color de Tarjeta:</label>
+                <select class="form-control" id="colorTarjeta" v-model="cardColor">
+                    <option value="GOLD">GOLD</option>
+                    <option value="TITANIUM">TITANIUM</option>
+                    <option value="PLATINO">PLATINO</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoTarjeta">Tipo de Tarjeta:</label>
+                <select class="form-control" id="tipoTarjeta" v-model="cardType">
+                    <option value="CREDIT">Credit</option>
+                    <option value="DEBIT">Débit</option>
+                </select>
+            </div>
+            <button @click=" generateCard()"type="button" class="btn btn-primary">create</button>
+        </form>
     </main>
 
     <footer>
@@ -108,5 +98,5 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="../js/accounts.js"></script>
+  <script src="../js/create-card.js"></script>
 </body>

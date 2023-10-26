@@ -23,6 +23,14 @@ const { createApp } = Vue;
             this.loans = response.data.loans
         }).catch((err) => console.log(err))
     },
+
+    createAccount(){
+      axios.post("/api/clients/current/accounts")
+      .then((response) =>{
+        location.href = "http://localhost:8080/WEB/pages/accounts.html"
+      })
+    },
+
     signOut() {
       axios.post("/api/logout")
           .then((response) => {
