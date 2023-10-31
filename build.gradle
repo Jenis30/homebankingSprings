@@ -28,6 +28,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
+	/*Spring Boot Starter Security es una dependencia específica de Spring Boot que puedes incluir
+	en tu proyecto para simplificar la configuración de Spring Security en una aplicación Spring Boot.
+	Al agregar esta dependencia a tu proyecto, obtienes una configuración predeterminada de Spring Security
+	que se integra de manera más fácil en una aplicación Spring Boot,
+	lo que facilita la implementación de características de autenticación y autorización.*/
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }

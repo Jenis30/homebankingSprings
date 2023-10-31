@@ -36,7 +36,7 @@
                                 <a class="nav-link" href="#">Loans</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../pages/transfer.html">Transactions</a>
+                                <a class="nav-link" href="#">Transactions</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" style="color: white; font-size: 22px;"
@@ -49,44 +49,67 @@
             </nav>
 
         </header>
-        <main class="d-flex justify-content-around align-items-center">
+       
+        <main id="app" class="d-flex flex-column justify-content-center align-items-center pt-5 contenedor-main ">
 
-            <section class="d-flex flex-column">
-                <h2 class="pt-4">Credit Card</h2>
-                <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-                    <div v-if="creditCards.length != 0" v-for="card of creditCards " class="card" style="width: 18rem;">
-                        <div class="card-body ">
-                            <h3 class="card-title textCard">{{card.cardHolder}}</h3>
-                            <h4 class="card-subtitle mb-2 text-body-secondary textCard">{{card.number}}</h4>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.thruDate}}</h5>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.cvv}}</h5>
+            <img class="imagetransfer m-5" src="../imagenes/tranfe.jpg" alt="imagentransferencua">
+    
+            <div class="contenedor-form">
+    
+                <form class="d-flex flex-column shadow p-3 mb-5 bg-white rounded">
+                    <div class="d-flex gap-2 contenedor-radios mt-3">
+                        <div>
+                            <h6>Destination Type</h6>
+                        </div>
+    
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="transferdestination" value="Own" v-model="transferType" id="Own"
+                                @change="selectAccount" class="form-check-input">
+                            <label for="Own" class="form-check-label">Own</label>
+                        </div>
+    
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="transferdestination" value="Others" v-model="transferType" id="Others"
+                                @change="selectAccount" class="form-check-input">
+                            <label for="Others" class="form-check-label">Others</label>
+                        </div>
+                    </div>
+                    <div v-if="transferType != '' "
+                        class="d-flex flex-column align-items-start m-4 gap-2 justify-content-center">
+    
+                        <label for="originF" class="text-start">From <span class="text-danger">*</span></label>
+                        <select id="originF" name="originF" v-model="selectedFrom" class="text-start">
+                            <option v-for="account in accountsOwn" :value="account">{{account}}</option>
+                        </select>
+    
+                        <label v-show="transferType === 'Own'" for="originT" class="text-start">To <span
+                                class="text-danger">*</span></label>
+                        <select id="originT" name="originT" v-show="transferType === 'Own'" class="text-start"
+                            v-model="accountDestination">
+                            <option v-for="account in accountsOwn" :value="account" :key="account"
+                                :disabled="account == selectedFrom ">{{account}}</option>
+                        </select>
+    
+                        <label v-show="transferType === 'Others'" for="accountothers" class="text-start">Account
+                            Destination<span class="text-danger">*</span></label>
+                        <input v-show="transferType === 'Others'" class="text-start" type="text" id="accountothers"
+                            name="accountothers" v-model="accountDestination">
+    
+                        <label for="amount" class="text-start">Amount <span class="text-danger">*</span></label>
+                        <input type="text" id="amount" name="amount" v-model="amount">
+    
+                        <label for="description" class="text-start">Description <span class="text-danger">*</span></label>
+                        <input class="mb-2 text-start" type="text" id="description" name="description"
+                            v-model="description">
+                        <div class="button d-flex justify-content-center w-100">
+                            <button class="buttonsend" @click.prevent="newTransaction()">Transfer</button>
                         </div>
                     </div>
                     <div v-else>
-                        <h3>No credit cards</h3>
+                        <h2>Select an option</h2>
                     </div>
-                </div>
-            </section>
-
-            <section  class="d-flex flex-column">
-                <h2 class="pt-4">Debit Card</h2>
-                <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-                    <div v-if="debitCards.length != 0" v-for="card of debitCards " class="card" style="width: 18rem;">
-                        <div class="card-body ">
-                            <h3 class="card-title textCard">{{card.cardHolder}}</h3>
-                            <h4 class="card-subtitle mb-2 text-body-secondary textCard">{{card.number}}</h4>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.thruDate}}</h5>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.cvv}}</h5>
-                        </div>
-                    </div>
-                    <div v-else>
-                        <h3>No debit cards</h3>
-                    </div>
-                </div>
-            </section>
-
-            <button><a href="./create-card.html">Create new card</a></button>
-
+                </form>
+            </div>
         </main>
 
         <footer>
@@ -116,5 +139,5 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/cards.js"></script>
+    <script src="../js/transfer.js"></script>
 </body>

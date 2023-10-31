@@ -32,7 +32,6 @@ public class CardController {
     private CardRepository cardRepository;
 
     @PostMapping("/client/current/cards")
-
     public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardType type, @RequestParam CardColor color) {
         Client client = clientRepository.findByEmail(authentication.getName());
 
@@ -44,7 +43,6 @@ public class CardController {
             cardRepository.save(card);
             client.addCard(card);
             clientRepository.save(client);
-
             return new ResponseEntity<>("Su tarjeta fue creada con exito", HttpStatus.CREATED);
         }else {
             return new ResponseEntity<>("Excedio limite de tarjetas", HttpStatus.FORBIDDEN);
@@ -55,15 +53,13 @@ public class CardController {
         Set<CardDTO> cards = cardRepository.findAll().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());;
         Set<String> numberCard = cards.stream().map(card ->card.getNumber()).collect(Collectors.toSet());
 
-        String aux = "VIN";
         long number;
-        String numberComplete;
+        String numberFormat;
         do {
             number = (int) ((Math.random() * (max - min)) + min);
-            String numberFormat = String.format("%04d", number);
-            numberComplete = aux + number;
-        }while (numberCard.contains(numberComplete));
-        return numberComplete;
+             numberFormat = String.format("%04d", number);
+        }while (numberCard.contains(numberFormat));
+        return numberFormat;
 
     }
     public String generateCvv(int min, int max){

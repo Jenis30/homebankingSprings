@@ -1,0 +1,40 @@
+@media (min-width: 990px) {
+    form{
+        width: 33%;
+        height: 35rem;
+       background-color: #044575;
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+    input{
+        width: 20rem !important;
+    }
+
+    }
+
+.botom{
+    background-color: black;
+    font-weight: 600;
+    color: white;
+}
+
+.botom-register{
+    text-decoration: none ;
+    background-color: black !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+/* .btn:hover{
+    background-color: black !important;
+} */
+a{
+    text-decoration: none ;
+    color: white !important;
+     font-weight: 600 !important;
+}
+
+label{
+    color: white;
+    font-weight: 600;
+}

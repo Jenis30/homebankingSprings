@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,9 +29,19 @@ import java.util.stream.Collectors;
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping("/accounts") //indico que tipo de peticion manejara este servlet y la r99999999uta para el mismo9
+    @GetMapping("/accounts") //indico que tipo de peticion manejara este servlet y la ruta para el mismo
     public Set<AccountDTO> getAccounts() {
         return accountRepository.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+    }
+    @GetMapping("/clients/current/accounts")
+    public Set<AccountDTO> getAccounts(Authentication authentication) {
+        Client client = clientRepository.findByEmail(authentication.getName());
+        Set<AccountDTO> accountDTOS = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+        if(client != null && accountDTOS != null) {
+            return accountDTOS;
+        }else{
+            return new HashSet<>();
+        }
     }
 
     @GetMapping("/accounts/{id}")
@@ -46,14 +57,14 @@ import java.util.stream.Collectors;
             throw new UsernameNotFoundException("unknow client" + authentication.getName());
         }
         if (client.getAccounts().size() == 3) {
-            return new ResponseEntity<>("Excedio limite de cuentas", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Excedio limite de cuentas", HttpStatus.FORBIDDEN); // 403
         }else {
             Account account = new Account(generateNumber(1 , 100000000), LocalDate.now(),  0);
             accountRepository.save(account);
             client.addAccount(account);
             clientRepository.save(client);
 
-            return new ResponseEntity<>("Su cuenta fue creada con exito",HttpStatus.CREATED);
+            return new ResponseEntity<>("Su cuenta fue creada con exito",HttpStatus.CREATED); // 201
         }
     }
     public String generateNumber(int min, int max){
@@ -71,4 +82,5 @@ import java.util.stream.Collectors;
             return numberComplete;
 
     }
+
 }
