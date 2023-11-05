@@ -30,7 +30,7 @@ public class HomebankingSpringsApplication {
 			LocalDateTime dateTime = LocalDateTime.now();
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("123"));
 			clientRepository.save(melba);
-
+			System.out.println(melba);
 			Account account = new Account("VIN001", LocalDate.now(),5000.00);
 			melba.addAccount(account);
 			accountRepository.save(account);
@@ -54,9 +54,9 @@ public class HomebankingSpringsApplication {
 
 			Loan loanMortgage = new Loan("Mortgage",500000.00, List.of(12,24,36,48,60));
 			loanRepository.save(loanMortgage);
-			Loan loanPersonal = new Loan("Personal", 10000.00, List.of( 6,12,24));
+			Loan loanPersonal = new Loan("Staff", 10000.00, List.of( 6,12,24));
 			loanRepository.save(loanPersonal);
-			Loan loanAutomation = new Loan("Automation", 300000.00, List.of(6,12,24,36));
+			Loan loanAutomation = new Loan("Automotive", 300000.00, List.of(6,12,24,36));
 			loanRepository.save(loanAutomation);
 
 			ClientLoan clientLoanOne = new ClientLoan(400000.00,60);

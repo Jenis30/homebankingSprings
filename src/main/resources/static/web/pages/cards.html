@@ -8,106 +8,176 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/accounts.css">
+    <link rel="stylesheet" href="../css/cards.css">
 
-    <title>Cards</title>
+    <title>Bank-Finance | Cards</title>
 </head>
 
 <body>
     <div id="app" class="containerIndex">
-        <header>
-            <nav class="navbar navbar-expand-lg contain_navbar ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="../index.html"><img src="../imagenes/logo.png" class="logo"
-                            alt="logo"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end mr-5" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="./accounts.html">Accounts</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cards</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Loans</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../pages/transfer.html">Transactions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: white; font-size: 22px;"
-                                    @click.prevent="signOut()"><i class="fas fa-sign-out-alt"></i>
-                                </a>
-                            </li>
-                        </ul>
+        <header class="maiin">
+            <div>
+              <div class="d-flex align-items-center justify-content-between bg-color flex-wrap">
+                <img class="img-style " src="../imagenes/jennys_blanco_largo.png" alt="" />
+      
+                <div class="d-flex justify-content-center">
+                  <nav class="d-flex m-3" data-bs-theme="dark">
+                    <div class="d-flex align-items-center justify-content-end">
+                      <a class="style-navbar text-light" href="./accounts.html">Accounts</a>
+                      <a class="style-navbar text-light" href="./cards.html">Card</a>
+                      <a class="style-navbar text-light" href="./loansAplication.html">Loans</a>
+                      <a class="style-navbar text-light" href="./transfer.html">Transactions</a>
+                      <a class="nav-link" style="color: white; font-size: 22px;"
+                      @click.prevent="signOut()"><i class="fas fa-sign-out-alt"></i>
+                  </a>
                     </div>
-                </div>
-            </nav>
-
-        </header>
-        <main class="d-flex justify-content-around align-items-center">
+                  </nav>
+        
+                </div> 
+        
+          
+              </div>
+              <div class="d-flex justify-content-center">
+                 
+              </div>
+            </div>
+            
+          </header>
+        <main class="d-flex justify-content-around align-items-center flex-column">
 
             <section class="d-flex flex-column">
                 <h2 class="pt-4">Credit Card</h2>
                 <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-                    <div v-if="creditCards.length != 0" v-for="card of creditCards " class="card" style="width: 18rem;">
-                        <div class="card-body ">
-                            <h3 class="card-title textCard">{{card.cardHolder}}</h3>
-                            <h4 class="card-subtitle mb-2 text-body-secondary textCard">{{card.number}}</h4>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.thruDate}}</h5>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.cvv}}</h5>
+                   
+                  <div class="flip-card" v-if="creditCards.length != 0" v-for="card of creditCards">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" :style="colorCards(card)">
+                            <p  class="heading_8264">Bank-Finance</p>
+                            <svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 48 48">
+                            <path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"></path><path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"></path><path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"></path>
+                            </svg>
+                            <svg version="1.1" class="chip" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50" xml:space="preserve">  <image id="image0" width="50" height="50" x="0" y="0" href="../imagenes/chip.png"></image>
+                            </svg>
+                            <svg version="1.1" class="contactless" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 50 50" xml:space="preserve">  <image id="image0" width="50" height="50" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                              AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
+                              cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
+                              lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
+                              fPeMM/MLt99/NuHdfPd888/57jn3nvsQWWj/VcMlvMMd5KRTogqx9iCdIjUUmcGR9ImUYowyP3xN
+                              GQJoRLVaZ2DaZf8kyjEJALhI28ELioyiwC+Rc3QZwRYyO/DH51hQgWm6DMIh10KmD4u9O16K49it
+                              VoPOAmcGAWWOepXIRScAoJZ2Frro8oN+EyTT6lWkkg6msZfMSR35QTJmjU0g15tIGSJ08ZZMJkJk
+                              HpNZgSkyXosS13TkJpZ62mPIJvOSzC1bp8vRhhCakEk7G9/o4gmZdbpsTcKu0m63FbnBP9Qrc15z
+                              bkbemfgNDtEOI8NO5L5O9VYyRYgmJayZ9nPaxZrSjW4+F6Uw9yQqIiIZwhp2huQTf6OIvCZyGM6g
+                              DJBZbyXifJXr7FZjGXsdxADxI7HUJFB6iWvsIhFpkoiIiGTJfjJfiCuJg2ZEspq9EHGVpYgzKqwJ
+                              qSAOEwuJQ/pxPvE3cYltJCLdxBLiSKKIE5HxJKcTRNeadxfhDiuYw44zVs1dxKwRk/uCxIiQkxKB
+                              sSctRVAge9g1E15EHE6yRUaJecRxcWlukdRIbGFOSZCMWQA/iWauIP3slREHXPyliqBcrrD71Amz
+                              Z+rD1Mt2Yr8TZc/UR4/YtFnbijnHi3UrN9vKQ9rPaJf867ZiaqDB+czeKYmd3pNa6fuI75MiC0uX
+                              XSR5aEMf7s7a6r/PudVXkjFb/SsrCRfROk0Fx6+H1i9kkTGn/E1vEmt1m089fh+RKdQ5O+xNJPUi
+                              cUIjO0Dm7HwvErEr0YxeibL1StSh37STafE4I7zcBdRq1DiOkdmlTJVnkQTBTS7X1FYyvfO4piaI
+                              nKbDCDaT2anLudYXCRFsQBgAcIF2/Okwgvz5+Z4tsw118dzruvIvjhTB+HOuWy8UvovEH6beitBK
+                              xDyxm9MmISKCWrzB7bSlaqGlsf0FC0gMjzTg6GgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDIt
+                              MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
+                              OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
+                              MDowMIXeN6gAAAAASUVORK5CYII="></image>
+                            </svg>
+                            <p class="number">{{card.number}}</p>
+                            <p class="valid_thru">VALID THRU</p>
+                            <p class="date_8264">{{card.thruDate}}</p>
+                            <p class="name">{{card.cardHolder}}</p>
+                        </div>
+                        <div class="flip-card-back" :style="colorCards(card)">
+                            <div class="strip"></div>
+                            <div class="mstrip"></div>
+                            <div class="sstrip">
+                              <p class="code">{{card.cvv}}</p>
+                            </div>
                         </div>
                     </div>
-                    <div v-else>
-                        <h3>No credit cards</h3>
-                    </div>
+                </div>
+                <div v-else> 
+                  <h3>No credit cards</h3>
+              </div>
                 </div>
             </section>
 
             <section  class="d-flex flex-column">
                 <h2 class="pt-4">Debit Card</h2>
                 <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-                    <div v-if="debitCards.length != 0" v-for="card of debitCards " class="card" style="width: 18rem;">
-                        <div class="card-body ">
-                            <h3 class="card-title textCard">{{card.cardHolder}}</h3>
-                            <h4 class="card-subtitle mb-2 text-body-secondary textCard">{{card.number}}</h4>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.thruDate}}</h5>
-                            <h5 class="card-subtitle mb-2 text-body-secondary textCard">{{card.cvv}}</h5>
+                  <div class="flip-card" v-if="creditCards.length != 0" v-for="card of debitCards">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" :style="colorCards(card)">
+                            <p class="heading_8264">Bank-Finance</p>
+                            <svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 48 48">
+                            <path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"></path><path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"></path><path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"></path>
+                            </svg>
+                            <svg version="1.1" class="chip" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 50 50" xml:space="preserve">  <image id="image0" width="50" height="50" x="0" y="0" href="../imagenes/chip.png"></image>
+                            </svg>
+                            <svg version="1.1" class="contactless" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 50 50" xml:space="preserve">  <image id="image0" width="50" height="50" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                              AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
+                              cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
+                              lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
+                              fPeMM/MLt99/NuHdfPd888/57jn3nvsQWWj/VcMlvMMd5KRTogqx9iCdIjUUmcGR9ImUYowyP3xN
+                              GQJoRLVaZ2DaZf8kyjEJALhI28ELioyiwC+Rc3QZwRYyO/DH51hQgWm6DMIh10KmD4u9O16K49it
+                              VoPOAmcGAWWOepXIRScAoJZ2Frro8oN+EyTT6lWkkg6msZfMSR35QTJmjU0g15tIGSJ08ZZMJkJk
+                              HpNZgSkyXosS13TkJpZ62mPIJvOSzC1bp8vRhhCakEk7G9/o4gmZdbpsTcKu0m63FbnBP9Qrc15z
+                              bkbemfgNDtEOI8NO5L5O9VYyRYgmJayZ9nPaxZrSjW4+F6Uw9yQqIiIZwhp2huQTf6OIvCZyGM6g
+                              DJBZbyXifJXr7FZjGXsdxADxI7HUJFB6iWvsIhFpkoiIiGTJfjJfiCuJg2ZEspq9EHGVpYgzKqwJ
+                              qSAOEwuJQ/pxPvE3cYltJCLdxBLiSKKIE5HxJKcTRNeadxfhDiuYw44zVs1dxKwRk/uCxIiQkxKB
+                              sSctRVAge9g1E15EHE6yRUaJecRxcWlukdRIbGFOSZCMWQA/iWauIP3slREHXPyliqBcrrD71Amz
+                              Z+rD1Mt2Yr8TZc/UR4/YtFnbijnHi3UrN9vKQ9rPaJf867ZiaqDB+czeKYmd3pNa6fuI75MiC0uX
+                              XSR5aEMf7s7a6r/PudVXkjFb/SsrCRfROk0Fx6+H1i9kkTGn/E1vEmt1m089fh+RKdQ5O+xNJPUi
+                              cUIjO0Dm7HwvErEr0YxeibL1StSh37STafE4I7zcBdRq1DiOkdmlTJVnkQTBTS7X1FYyvfO4piaI
+                              nKbDCDaT2anLudYXCRFsQBgAcIF2/Okwgvz5+Z4tsw118dzruvIvjhTB+HOuWy8UvovEH6beitBK
+                              xDyxm9MmISKCWrzB7bSlaqGlsf0FC0gMjzTg6GgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDIt
+                              MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
+                              OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
+                              MDowMIXeN6gAAAAASUVORK5CYII="></image>
+                            </svg>
+                            <p class="number">{{card.number}}</p>
+                            <p class="valid_thru">VALID THRU</p>
+                            <p class="date_8264">{{card.thruDate}}</p>
+                            <p class="name">{{card.cardHolder}}</p>
+                        </div>
+                        <div class="flip-card-back" :style="colorCards(card)">
+                            <div class="strip"></div>
+                            <div class="mstrip"></div>
+                            <div class="sstrip">
+                              <p class="code">{{card.cvv}}</p>
+                            </div>
                         </div>
                     </div>
-                    <div v-else>
-                        <h3>No debit cards</h3>
-                    </div>
+                </div>
+                <div v-else> 
+                  <h3>No debit cards</h3>
+              </div>
                 </div>
             </section>
 
-            <button><a href="./create-card.html">Create new card</a></button>
+            <button class="btn btn-primary" style="font-size: 1.3rem ;margin-bottom: 1rem;"><a href="./create-card.html" style="text-decoration: none; color: aliceblue;">Create new card</a></button>
 
         </main>
 
-        <footer>
-            <div class="d-flex flex-column align-items-center  pt-2">
-                <div class="item-footer">
-                    <h2>Bank-Finance</h2>
-                    <ul class="info-footer d-flex flex-column gap-1" style="list-style-type: none">
-                        <li>Security</li>
-                        <li>legal warning</li>
-                        <li>Policies</li>
-                        <li>Product regulations</li>
-                    </ul>
-                    <p>© 2023 Bank-Finance Colombia S.A</p>
-                </div>
-
-                <div class="d-flex gap-4 pb-2">
-                    <img src="../imagenes/facebook.png" class="container_img" alt="facebook">
-                    <img src="../imagenes/instagram.png" class="container_img" alt="instagram">
-                    <img src="../imagenes/whatsapp.png" class="container_img" alt="whatsapp">
-                </div>
+        <footer class="foter">
+            <nav
+            class="navbar bg-color2  bg-opacity-75 border-bottom border-body d-flex justify-content-center"
+              data-bs-theme="dark"
+            >
+            <div>
+              <div class="style-margin d-flex justify-content-center ">
+                <img class="img-footer " src="../imagenes/jennys_blanco.png" alt="" />
+              </div>
+              <div class="style-margin  d-flex justify-content-center ">
+                <a href="#"><img class="style-redes" src="../imagenes/facebook.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/instagram.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/wsp.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/linkedin.png" alt=""></a>
             </div>
+      
+              <div>
+                <p class="text-light  d-flex justify-content-center"style="padding: 1rem; text-align: center;">2023 All rights reserved By: Jennis guzman Martinez (COHORT 51)</p>
+            </div>
+          </div>
+            </nav>
+      
         </footer>
     </div>
 

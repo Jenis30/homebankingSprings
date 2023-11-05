@@ -115,5 +115,6 @@ public class Client {
         return clientLoans.stream().map(clientLoan -> clientLoan.getLoan()).collect(Collectors.toList());
     }
 
+
 }
 

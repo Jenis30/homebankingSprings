@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
-    ClientRepository clientRepository;
+   private ClientRepository clientRepository;
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
@@ -24,7 +24,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
         auth.userDetailsService(inputEmail-> {
 
-            Client client = clientRepository.findByEmail(inputEmail);
+            Client client = clientRepository.findByEmail(inputEmail) ;
 
             if (client != null) {
                 if (client.getEmail().contains("creditbank")) {

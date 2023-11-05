@@ -1,0 +1,186 @@
+body{
+    background-color: #EBE4D1;
+}
+
+.img-style{
+    width: 13rem;
+    margin: 1px;
+    margin-right: 0px;
+  
+}
+
+.style-navbar{
+    margin: 1rem;
+}
+
+.border-navbar{
+    border-radius: 1rem;
+}
+.style-welcome{
+    margin-top: 1rem;
+}
+
+.style-cards{
+    margin: 1rem;
+}
+
+.img-footer{
+    width: 15rem;
+}
+.img-card{
+    width: 50rem;
+}
+.style-redes{
+    width: 2rem;
+    margin: 1rem;
+}
+
+.style-margin{
+    margin: 1rem;
+}
+
+.home{
+    margin: 20rem;
+}
+.style-main{
+    margin: 10rem;
+}
+
+.style-title{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+.debit{
+    color: red;
+}
+
+.credit{
+    color: green;
+}
+
+.bg-color{
+    background-color: #0C356A;
+
+}
+.bg-color2{
+
+    background-color: #0C356A;
+   
+}
+
+.bg-nav{
+    background-color: #190482;
+}
+
+.margin-login{
+    margin-bottom: 5rem;
+}
+.w-logout{
+width: 5rem;
+margin-top: 1rem;
+}
+
+.color{
+    background-color: #0174BE;
+    
+}
+.imagen1{
+    width: 30rem;
+    height: 25rem;
+    object-fit: cover;
+}
+.icono{
+    width: 1rem;
+    height: 1rem;
+    gap: 1rem;
+}
+.boton-login{
+    width: 3rem !important;
+}
+.foter{
+    margin-top: 2rem;
+}
+.maiin{
+    margin-bottom: 1rem;
+}
+.card-main{
+    background-color: #0174be;
+}
+
+.nav__logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem ;
+}
+
+.comtenedor__main{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.comtenedor__main > div > h3{
+    padding: 1.5rem 0;
+    font-size: 2.3rem;
+}
+
+.contenedor__text{
+    display: flex;
+    padding: 2px 0;
+} 
+.contenedor__text >h6,
+contenedor__text >img{
+    padding:2px 0;
+}
+.container__card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     flex-direction: column;
+    transform: scale(1); 
+    margin-top: 1rem;
+}
+.container__info{
+    background-color:#0174be ;
+}
+
+.container__card img{
+height: 20rem;
+object-fit: cover;
+}
+
+.container__iten{
+    display: flex;
+    flex-direction: column;
+    max-width: 65rem;
+   
+}
+.card__iten{
+    display: flex;
+    align-items: center;
+  box-shadow: 0 3px 5px #333; 
+ 
+}
+.card__iten p{
+    font-size: 23px;
+}
+
+@media (max-width: 768px){
+    .container__card{
+        transform: scale(0.85); 
+        margin:0.2rem 0.6rem;
+        box-sizing: border-box;
+    }
+
+}
+    
+
+
+
+
+
+
+  
+   
+
+  

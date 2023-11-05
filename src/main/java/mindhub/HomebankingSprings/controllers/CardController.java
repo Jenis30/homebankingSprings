@@ -66,7 +66,7 @@ public class CardController {
         Set<CardDTO> cards = cardRepository.findAll().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());;
         Set<String> numberCard = cards.stream().map(card ->card.getNumber()).collect(Collectors.toSet());
 
-        String aux = "VIN";
+        String aux = "";
         long number;
         String numberComplete;
         do {

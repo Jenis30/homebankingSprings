@@ -31,6 +31,14 @@ const { createApp } = Vue;
       })
     },
 
+    formatNumber(number) {
+      return number.toLocaleString("De-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+      })
+  },
+
+
     signOut() {
       axios.post("/api/logout")
           .then((response) => {

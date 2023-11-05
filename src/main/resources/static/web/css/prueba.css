@@ -1,0 +1,108 @@
+body{
+    background-color: #EBE4D1;
+}
+
+.img-style{
+    width: 13rem;
+    margin: 1px;
+    margin-right: 0px;
+  
+}
+
+.style-navbar{
+    margin: 1rem;
+}
+
+.border-navbar{
+    border-radius: 1rem;
+}
+.style-welcome{
+    margin-top: 1rem;
+}
+
+.style-cards{
+    margin: 1rem;
+}
+
+.img-footer{
+    width: 15rem;
+}
+.img-card{
+    width: 50rem;
+}
+.style-redes{
+    width: 2rem;
+    margin: 1rem;
+}
+
+.style-margin{
+    margin: 1rem;
+}
+
+.home{
+    margin: 20rem;
+}
+.style-main{
+    margin: 10rem;
+}
+
+.style-title{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+.debit{
+    color: red;
+}
+
+.credit{
+    color: green;
+}
+
+.bg-color{
+    background-color: #0C356A;
+
+}
+.bg-color2{
+
+    background-color: #0C356A;
+   
+}
+
+.bg-nav{
+    background-color: #190482;
+}
+
+.margin-login{
+    margin-bottom: 5rem;
+}
+.w-logout{
+width: 5rem;
+margin-top: 1rem;
+}
+
+.color{
+    background-color: #0174BE;
+    
+}
+.imagen1{
+    width: 20rem;
+    height: 20rem;
+}
+.icono{
+    width: 1rem;
+    height: 1rem;
+    gap: 1rem;
+}
+.boton-login{
+    width: 3rem !important;
+}
+.foter{
+    margin-top: 2rem;
+}
+.maiin{
+    margin-bottom: 1rem;
+}
+.card-main{
+    background-color: #0174BE;
+}
+

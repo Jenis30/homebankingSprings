@@ -10,47 +10,43 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
 
-    <title>Cards</title>
+    <title>Login</title>
 </head>
 
 <body>
     <div id="app" class="containerIndex">
-        <header>
-            <nav class="navbar navbar-expand-lg contain_navbar ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="../index.html"><img src="../imagenes/logo.png" class="logo"
-                            alt="logo"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end mr-5" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="./accounts.html">Accounts</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cards</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Loans</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../pages/transfer.html">Transactions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" style="color: white; font-size: 22px;"
-                                    @click.prevent="signOut()"><i class="fas fa-sign-out-alt"></i>
-                                </a>
-                            </li>
-                        </ul>
+        <header class="maiin">
+            <div>
+              <div class="d-flex align-items-center justify-content-between bg-color flex-wrap">
+                <img class="img-style " src="../imagenes/jennys_blanco_largo.png" alt="" />
+      
+                <div class="d-flex justify-content-center">
+                  <nav class="d-flex m-3" data-bs-theme="dark">
+                    <div>
+                      <a class="style-navbar text-light" href="./accounts.html">Accounts</a>
+                      <a class="style-navbar text-light" href="./cards.html">Card</a>
+                      <a class="style-navbar text-light" href="./loansAplication.html">Loans</a>
+                      <a class="style-navbar text-light" href="./transfer.html">Transactions</a>
+                      <!-- <a class="nav-link" style="color: white; font-size: 22px;"
+                      @click.prevent="signOut()"><i class="fas fa-sign-out-alt"></i> -->
+                  </a>
                     </div>
-                </div>
-            </nav>
-
-        </header>
-        <main id="app" class="d-flex justify-content-center align-items-center">
-            <form class="d-flex justify-content-center align-items-center flex-column m-4">
+                  </nav>
+        
+                </div> 
+        
+          
+              </div>
+              <div class="d-flex justify-content-center">
+                 
+              </div>
+            </div>
+            
+          </header>
+        <main id="app" class="d-flex justify-content-center align-items-center flex-wrap" >
+          <img src="../imagenes/20943389-PhotoRoom.png-PhotoRoom.png" style="width: 35rem;" alt="">
+            <form class="d-flex justify-content-center align-items-center flex-column m-4" style="background-color: #044575; color: white; padding: 3rem; border: solid 2px; border-radius: 8px; gap: 2rem;">
+              <h3>Log in here!</h3>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -61,8 +57,8 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" v-model="loginPassword">
                 </div>
                 <div class="d-flex gap-5 align-items-center justify-content-center">
-                    <button type="buttom" @click.prevent="login()" class="btn botom">Login</button>
-                    <button type="buttom" class=" btn botom-register"> <a href="./register.html" >Register</a></button>
+                    <button type="buttom" @click.prevent="login()" class="btn botom" style="color: black; background-color: white; border-radius: 1rem; padding: 0.5rem;">Login</button >
+                    <button type="buttom" class=" btn botom-register"> <a href="./register.html" style="text-decoration: none; color: black; background-color: white;border-radius: 1rem;padding: 0.5rem;" >Register</a></button>
                
                 </div>
                 
@@ -70,25 +66,28 @@
         
            </main>
 
-        <footer>
-            <div class="d-flex flex-column align-items-center  pt-2">
-                <div class="item-footer">
-                    <h2>Bank-Finance</h2>
-                    <ul class="info-footer d-flex flex-column gap-1" style="list-style-type: none">
-                        <li>Security</li>
-                        <li>legal warning</li>
-                        <li>Policies</li>
-                        <li>Product regulations</li>
-                    </ul>
-                    <p>© 2023 Bank-Finance Colombia S.A</p>
-                </div>
-
-                <div class="d-flex gap-4 pb-2">
-                    <img src="../imagenes/facebook.png" class="container_img" alt="facebook">
-                    <img src="../imagenes/instagram.png" class="container_img" alt="instagram">
-                    <img src="../imagenes/whatsapp.png" class="container_img" alt="whatsapp">
-                </div>
+           <footer class="foter">
+            <nav
+            class="navbar bg-color2  bg-opacity-75 border-bottom border-body d-flex justify-content-center"
+              data-bs-theme="dark"
+            >
+            <div>
+              <div class="style-margin d-flex justify-content-center ">
+                <img class="img-footer " src="../imagenes/jennys_blanco.png" alt="" />
+              </div >
+              <div class="style-margin  d-flex justify-content-center flex-wrap">
+                <a href="#"><img class="style-redes" src="../imagenes/facebook.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/instagram.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/wsp.png" alt=""></a>
+                <a href="#"><img class="style-redes" src="../imagenes/linkedin.png" alt=""></a>
             </div>
+        
+              <div>
+                <p class="text-light  d-flex justify-content-center " style="padding: 1rem; text-align: center;">2023 All rights reserved By:Jennis guzman Martinez  (COHORT 51)</p>
+            </div>
+          </div>
+            </nav>
+        
         </footer>
     </div>
 

@@ -45,8 +45,14 @@ import java.util.stream.Collectors;
     }
 
     @GetMapping("/accounts/{id}")
-    public AccountDTO getAccount(@PathVariable Long id) {//Esta anotación se usa para extraer valores de variables de ruta
-        return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+    public ResponseEntity<Object> getAccount(Authentication authentication , @PathVariable Long id){
+        Client client = (clientRepository.findByEmail(authentication.getName()));
+        Set<Long> accountsId = client.getAccounts().stream().map(account -> account.getId()).collect(Collectors.toSet());
+        if (!accountsId.contains(id)) {
+            return new ResponseEntity<>("the account does not belong to the authenticated client" , HttpStatus.FORBIDDEN);
+        }
+        AccountDTO foundAccount = accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+        return new ResponseEntity<>(foundAccount,HttpStatus.CREATED);
     }
 
     @PostMapping("/clients/current/accounts")

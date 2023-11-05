@@ -30,4 +30,7 @@ tr:hover {
         padding-bottom: 1.5rem;
         gap: 2rem !important;
     }
+    h3{
+        align-items: center;
+    }
 }
