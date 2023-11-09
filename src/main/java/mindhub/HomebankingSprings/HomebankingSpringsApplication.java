@@ -23,7 +23,7 @@ public class HomebankingSpringsApplication {
 	{
 		SpringApplication.run(HomebankingSpringsApplication.class, args);
 	}
-	@Bean
+	/*@Bean
 		public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository,CardRepository cardRepository){
 
 		return args -> {
@@ -108,6 +108,6 @@ public class HomebankingSpringsApplication {
 			cardRepository.save(card3);
 		};
 
-		}
+		}*/
 
 }
