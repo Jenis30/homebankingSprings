@@ -4,7 +4,8 @@ const { createApp } = Vue;
     data() {
       return {
         creditCards:[],
-        debitCards:[]
+        debitCards:[],
+        currentDate: new Date()
       
         
       }
@@ -33,6 +34,13 @@ const { createApp } = Vue;
           else if (card.color === "TITANIUM")
               return {'background': 'linear-gradient(to right, #708090 0%, #4d555f 100%)'};
       },
+      deleteCard(id){
+        axios.patch("/api/cards/modify",`active=${false}&id=${id}`)
+        .then((response) =>{
+        this.loadData()
+        console.log(this.creditCards)
+        }).catch((err) => console.log(err))
+      },
     
     signOut() {
       axios.post("/app/logout")
@@ -42,5 +50,5 @@ const { createApp } = Vue;
           }).catch((err) => console.log(err))
   }
     }
-
+   
   }).mount('#app')

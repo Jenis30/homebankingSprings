@@ -19,6 +19,7 @@ public class Loan {
     private Long id;
     private String name;
     private Double maxAmount;
+    private Double percentageInterest;
     @ElementCollection  // hace una relacion de uno a muchos automaticamente evitando hacer una clase payments (payments es una propiedad multivaluada)
     private List<Integer> payments;
 
@@ -28,10 +29,11 @@ public class Loan {
    public Loan(){
    }
 
-    public Loan( String name, Double maxAmount, List<Integer> payments) {
+    public Loan( String name, Double maxAmount, List<Integer> payments,Double percentageInterest) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+        this.percentageInterest = percentageInterest;
     }
 
     public Long getId() {
@@ -58,6 +60,18 @@ public class Loan {
         this.maxAmount = maxAmount;
     }
 
+    public Double getPercentageInterest() {
+        return percentageInterest;
+    }
+
+    public void setPercentageInterest(Double percentageInterest) {
+        this.percentageInterest = percentageInterest;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
+
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
     }
@@ -66,8 +80,8 @@ public class Loan {
         return clientLoans;
     }
     public void addClientLoan(ClientLoan clientLoan){
+        clientLoan.setLoan(this);
        this.clientLoans.add(clientLoan);
-       clientLoan.setLoan(this);
 
     }
     @JsonIgnore

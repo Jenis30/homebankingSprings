@@ -17,6 +17,8 @@ public class Account {
      private String number ;
     private LocalDate creationDate ;
     private double balance;
+    private AccountType accountType;
+    private boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id") //clave foranea
@@ -28,10 +30,12 @@ public class Account {
 
     }
 
-    public Account (String number, LocalDate creationDate, double balance){
+    public Account (String number, LocalDate creationDate, double balance,boolean active,AccountType accountType){
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.active = active;
+        this.accountType = accountType;
     }
 
     public void addTransaction(Transaction transaction){
@@ -76,6 +80,21 @@ public class Account {
         return transactions;
     }
 
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     public void setTransactions(Set<Transaction> transactions) {
         this.transactions = transactions;
     }

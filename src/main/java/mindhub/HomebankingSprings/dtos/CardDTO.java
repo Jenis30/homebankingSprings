@@ -16,6 +16,7 @@ public class CardDTO {
     private LocalDate thruDate;
     private CardType type;
     private CardColor color;
+    private Boolean active;
 
     public CardDTO() {
     }
@@ -29,6 +30,7 @@ public class CardDTO {
         this.thruDate = card.getThruDate();
         this.type = card.getType();
         this.color = card.getColor();
+        this.active = card.getActive();
     }
 
     public long getId() {
@@ -58,6 +60,8 @@ public class CardDTO {
     public CardType getType() {
         return type;
     }
+
+    public Boolean getActive() {return active;}
 
     public CardColor getColor() {
         return color;

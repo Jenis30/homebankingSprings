@@ -23,7 +23,7 @@ public class HomebankingSpringsApplication {
 	{
 		SpringApplication.run(HomebankingSpringsApplication.class, args);
 	}
-	/*@Bean
+	@Bean
 		public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository,CardRepository cardRepository){
 
 		return args -> {
@@ -31,32 +31,32 @@ public class HomebankingSpringsApplication {
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("123"));
 			clientRepository.save(melba);
 			System.out.println(melba);
-			Account account = new Account("VIN001", LocalDate.now(),5000.00);
+			Account account = new Account("VIN001", LocalDate.now(),5000.00, true,AccountType.SAVING);
 			melba.addAccount(account);
 			accountRepository.save(account);
 
 			LocalDate date = LocalDate.now();
-			Account account1 = new Account("VIN002",date.plusDays(1), 7500.00);
+			Account account1 = new Account("VIN002",date.plusDays(1), 7500.00, true,AccountType.SAVING);
 			melba.addAccount(account1);
 			accountRepository.save(account1);
 
-			Transaction Primer = new Transaction(CREDIT, "Pay Taxes" , dateTime, 455333.33);
+			Transaction Primer = new Transaction(CREDIT, "Pay Taxes" , dateTime, 455333.33, account1.getBalance(), true);
 			account1.addTransaction(Primer);
 			transactionRepository.save(Primer);
 
-			Transaction Second = new Transaction(DEBIT, "Buy cream and beer" , dateTime, -45.33);
+			Transaction Second = new Transaction(DEBIT, "Buy cream and beer" , dateTime, -45.33, account1.getBalance(), true);
 			account1.addTransaction(Second);
 			transactionRepository.save(Second);
 
-			Transaction third = new Transaction(CREDIT, "Pay Taxis" , dateTime, 455333.1);
+			Transaction third = new Transaction(CREDIT, "Pay Taxis" , dateTime, 455333.1, account.getBalance(), true);
 			account.addTransaction(third);
 			transactionRepository.save(third);
 
-			Loan loanMortgage = new Loan("Mortgage",500000.00, List.of(12,24,36,48,60));
+			Loan loanMortgage = new Loan("Mortgage",500000.00, List.of(12,24,36,48,60),0.3);
 			loanRepository.save(loanMortgage);
-			Loan loanPersonal = new Loan("Staff", 10000.00, List.of( 6,12,24));
+			Loan loanPersonal = new Loan("Staff", 10000.00, List.of( 6,12,24),0.4);
 			loanRepository.save(loanPersonal);
-			Loan loanAutomation = new Loan("Automotive", 300000.00, List.of(6,12,24,36));
+			Loan loanAutomation = new Loan("Automotive", 300000.00, List.of(6,12,24,36),0.2);
 			loanRepository.save(loanAutomation);
 
 			ClientLoan clientLoanOne = new ClientLoan(400000.00,60);
@@ -78,7 +78,7 @@ public class HomebankingSpringsApplication {
 			Client client1 = new Client("jennys", "guzman", "jennys@creditbank.com", passwordEnconder.encode("1234"));
 			clientRepository.save(client1);
 
-			Account account2 = new Account("Vin003" , date, 8000.00);
+			Account account2 = new Account("Vin003" , date, 8000.00, true,AccountType.SAVING);
 			client1.addAccount(account2);
 			accountRepository.save(account2);
 
@@ -96,9 +96,9 @@ public class HomebankingSpringsApplication {
 			loanAutomation.addClientLoan(clientLoanFoor);
 			clientLoanRepository.save(clientLoanFoor);
 
-			Card card1 = new Card("Melba Morel","1785-4354-3742-4332","123",LocalDate.now(),LocalDate.now().plusYears(5), CardType.DEBIT,CardColor.GOLD);
-			Card card2 = new Card("Melba Morel","8654-4377-3732-9832","654",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.TITANIUM);
-			Card card3 = new Card("Jennys Guzman","7756-4354-3562-6545","976",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.SILVER);
+			Card card1 = new Card("Melba Morel","1785-4354-3742-4332","123",LocalDate.now(),LocalDate.now().plusYears(5), CardType.DEBIT,CardColor.GOLD,true);
+			Card card2 = new Card("Melba Morel","8654-4377-3732-9832","654",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.TITANIUM, true);
+			Card card3 = new Card("Jennys Guzman","7756-4354-3562-6545","976",LocalDate.now(),LocalDate.now().plusYears(5), CardType.CREDIT,CardColor.SILVER, true);
 
 			melba.addCard(card1);
 			melba.addCard(card2);
@@ -108,6 +108,6 @@ public class HomebankingSpringsApplication {
 			cardRepository.save(card3);
 		};
 
-		}*/
+		}
 
 }

@@ -17,7 +17,7 @@
   <div id="app" class="containerIndex">
     <header class="maiin">
       <div>
-        <div class="d-flex align-items-center justify-content-between bg-color">
+        <div class="d-flex align-items-center justify-content-between bg-color flex-wrap">
           <img class="img-style " src="../imagenes/jennys_blanco_largo.png" alt="" />
 
           <div class="d-flex justify-content-center">
@@ -45,11 +45,11 @@
     </header>
 
     <main class="container mt-4">
-        <h2>Formulario de Tarjeta</h2>
-        <form>
+        <h2 class="d-flex justify-content-center">Formulario de Tarjeta</h2>
+        <form  class="d-flex justify-content-center align-items-center flex-column m-5" style="background-color: #044575; color: white; padding: 3rem; border: solid 2px; border-radius: 8px; gap: 2rem;">
             <div class="form-group">
                 <label for="colorTarjeta">Color de Tarjeta:</label>
-                <select class="form-control" id="colorTarjeta" v-model="cardColor">
+                <select class="form-control" id="colorTarjeta" v-model="cardColor" style="width: 25rem;">
                     <option value="GOLD">GOLD</option>
                     <option value="TITANIUM">TITANIUM</option>
                     <option value="PLATINO">SILVER</option>
@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
                 <label for="tipoTarjeta">Tipo de Tarjeta:</label>
-                <select class="form-control" id="tipoTarjeta" v-model="cardType">
+                <select class="form-control" id="tipoTarjeta" v-model="cardType" style="width: 25rem;"> 
                     <option value="CREDIT">Credit</option>
                     <option value="DEBIT">Débit</option>
                 </select>

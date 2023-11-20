@@ -5,7 +5,9 @@ const { createApp } = Vue;
       return {
         accounts:[],
         loans: [],
-        client:{}
+        client:{},
+        accountsActive:[],
+        accountType: ""
         
       }
     },
@@ -21,11 +23,23 @@ const { createApp } = Vue;
             console.log(this.client)
             this.accounts = response.data.accounts
             this.loans = response.data.loans
+            this.accountsActive = this.filterAccountsActive()
+            console.log()
         }).catch((err) => console.log(err))
     },
 
     createAccount(){
-      axios.post("/api/clients/current/accounts")
+      axios.post("/api/clients/current/accounts", `accountType=${this.accountType}`)
+      .then((response) =>{
+        location.href = "http://localhost:8080/WEB/pages/accounts.html"
+      })
+    },
+    filterAccountsActive(){
+      return this.accounts.filter(account => account.active)
+    },
+    
+    deleteAccount(id){
+      axios.put("/api/clients/current/accounts",`id=${id}`)
       .then((response) =>{
         location.href = "http://localhost:8080/WEB/pages/accounts.html"
       })

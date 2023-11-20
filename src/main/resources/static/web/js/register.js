@@ -10,7 +10,7 @@ createApp({
         };
     },
     created() {
-
+       
     },
     methods: {
         register() {

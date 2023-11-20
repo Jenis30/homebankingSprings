@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loansAplication.css">
+
+
+
+    <title>Bank-Finance | Transaccions</title>
+</head>
+
+<body>
+    <div id="app" class="containerIndex">
+
+        <header class="maiin">
+            <div>
+                <div class="d-flex align-items-center justify-content-between bg-color flex-wrap">
+                    <img class="img-style " src="../imagenes/jennys_blanco_largo.png" alt="" />
+
+                    <div class="d-flex justify-content-center">
+                        <nav class="d-flex m-3" data-bs-theme="dark">
+                            <div>
+                                <a class="style-navbar text-light" href="./accounts.html">Accounts</a>
+                                <a class="style-navbar text-light" href="./cards.html">Card</a>
+                                <a class="style-navbar text-light" href="./loansAplication.html">Loans</a>
+                                <a class="style-navbar text-light" href="./transfer.html">Transactions</a>
+                                <a class="nav-link" style="color: white; font-size: 22px;" @click.prevent="signOut()"><i
+                                        class="fas fa-sign-out-alt"></i>
+                                </a>
+                            </div>
+                        </nav>
+
+                    </div>
+
+
+                </div>
+                <div class="d-flex justify-content-center">
+
+                </div>
+            </div>
+
+        </header>
+
+        <main>
+
+            <h1 class="mt-4 d-flex justify-content-center">Create new Loan</h1>
+            <form class="d-flex flex-column align-items-center justify-content-center contenedor-form">
+
+                <div class="form-group">
+                    <label for="name">Name<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name" v-model="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="maxAmount">maxAmount<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="maxAmount" name="maxAmount" v-model="maxAmount">
+                </div>
+
+                <div class="form-group">
+                    <label for="percentageInterest">percentageInterest<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="percentageInterest" name="percentageInterest"
+                        v-model="percentageInterest">
+                </div>
+
+                <div class="input-group mb-3 flex-column">
+                   <h6 style="text-align: center;">Payments (select all the options you want)</h6>
+                    <div class="d-flex justify-content-center">
+                        <div class="form-check" v-model="payments">
+                            <input class="form-check-input" type="checkbox" value="6" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="12"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                12
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="18"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                18
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="24"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                24
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="30"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                30
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="36"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                36
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input v-model="payments" class="form-check-input" type="checkbox" value="48"
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                48
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary d-flex gap-5" @click.prevent="newLoanAdmin()">Confirm</button>
+            </form>
+
+        </main>
+
+
+
+        <footer class="foter">
+            <nav class="navbar bg-color2  bg-opacity-75 border-bottom border-body d-flex justify-content-center"
+                data-bs-theme="dark">
+                <div>
+                    <div class="style-margin d-flex justify-content-center ">
+                        <img class="img-footer " src="../imagenes/jennys_blanco.png" alt="" />
+                    </div>
+                    <div class="style-margin  d-flex justify-content-center ">
+                        <a href="#"><img class="style-redes" src="../imagenes/facebook.png" alt=""></a>
+                        <a href="#"><img class="style-redes" src="../imagenes/instagram.png" alt=""></a>
+                        <a href="#"><img class="style-redes" src="../imagenes/wsp.png" alt=""></a>
+                        <a href="#"><img class="style-redes" src="../imagenes/linkedin.png" alt=""></a>
+                    </div>
+
+                    <div>
+                        <p class="text-light  d-flex justify-content-center "
+                            style="padding: 1rem; text-align: center;">2023 All rights reserved By: Jennis guzman
+                            Martinez (COHORT 51)</p>
+                    </div>
+                </div>
+            </nav>
+
+        </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/JavaScript" src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="../js/loan-admin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>

@@ -3,43 +3,31 @@ let { createApp } = Vue;
 createApp({
     data() {
         return {
-            loansAvailable: [],
-            accountsOwn: [],
-            TypeLoan: "",
-            amount: "",
-            accountTransfer: "",
-            payments: "",
-            loansAvailableCoutas: [],
-            calculateQuota: "",
-            advertencia: "",
+           name:"",
+           maxAmount:0,
+           percentageInterest:0,
+           payments:[],
+           loansAvailable:{}
         };
     },
     created() {
-
-    },
-    methods: {
-        loans() {
+        
             axios.get("/api/loans")
                 .then((response) => {
                     this.loansAvailable = response.data
 
                 }).catch((err) => console.log(err))
-
-        },
+    },
+    methods: {
+       
         accounts() {
             axios.get("/api/clients/current/accounts")
                 .then((response) => {
                     this.accountsOwn = response.data.map(account => account.number)
                 }).catch((err) => console.log(err))
         },
-        newloan() {
-            axios.post("/api/loans", {
-                id: this.TypeLoan.id,
-                amount: this.amount,
-                payments: this.payments,
-                numberAccount: this.accountTransfer,
-
-            },
+        newLoanAdmin() {
+            axios.post("/api/admin/loans", `name=${this.name}&maxAmount=${this.maxAmount}&percentageInterest=${this.percentageInterest}&payments=${this.payments}`
             ).then((response) => {
                 Swal.fire({
                     title: "Are you sure?",
@@ -48,15 +36,15 @@ createApp({
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Yes, confirm!"
                   }).then((result) => {
                     Swal.fire({
-                        title: "Successful loan application",
+                        title: "Successful loan created",
                         icon: "success",
                         confirmButtonColor: "#3085d6",
                       }).then((result) => {
                         if (result.isConfirmed) {
-                            location.pathname = `/WEB/pages/loansAplication.html`;
+                            location.pathname = `/WEB/pages/loan-admin.html`;
                         }
                       });             
                     }

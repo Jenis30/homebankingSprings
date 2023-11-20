@@ -1,4 +1,7 @@
 package mindhub.HomebankingSprings.controllers;
+import mindhub.HomebankingSprings.Service.AccountService;
+import mindhub.HomebankingSprings.Service.ClientService;
+import mindhub.HomebankingSprings.Service.TransactionService;
 import mindhub.HomebankingSprings.models.Client;
 import mindhub.HomebankingSprings.models.Transaction;
 import mindhub.HomebankingSprings.models.TransactionType;
@@ -24,18 +27,18 @@ import java.util.Set;
     public class TransactionController {
 
         @Autowired
-        private ClientRepository clientRepository;
+        private ClientService clientService;
 
         @Autowired
-        private AccountRepository accountRepository;
+        private AccountService accountService;
 
         @Autowired
-        private TransactionRepository transactionRepository;
+        private TransactionService transactionService;
 
 
         @Transactional
         @RequestMapping(path = "/transactions", method = RequestMethod.POST)
-        public ResponseEntity<?> addTransaction(@RequestParam Double amount, @RequestParam String description, @RequestParam String originnumber, @RequestParam String destinationnumber, Authentication authentication) {
+        public ResponseEntity<Object> addTransaction(@RequestParam Double amount, @RequestParam String description, @RequestParam String originnumber, @RequestParam String destinationnumber, Authentication authentication) {
 
             if (amount == null || amount <= 0.0) {
                 return new ResponseEntity<>("The value of amount is not valid", HttpStatus.FORBIDDEN);
@@ -52,8 +55,8 @@ import java.util.Set;
                 return new ResponseEntity<>("Please enter a valid account number", HttpStatus.FORBIDDEN);
             }
 
-            Account accountOrigen = accountRepository.findByNumber(originnumber);
-            Account accountDestino = accountRepository.findByNumber(destinationnumber);
+            Account accountOrigen = accountService.findByNumber(originnumber);
+            Account accountDestino = accountService.findByNumber(destinationnumber);
 
             if (accountDestino == null) {
                 return new ResponseEntity<>("Account not found, please enter a valid account", HttpStatus.FORBIDDEN);
@@ -63,10 +66,10 @@ import java.util.Set;
             }
 
             String nameClient = authentication.getName();
-            Client client = clientRepository.findByEmail(nameClient);
+            Client client = clientService.findClientByEmail(nameClient);
 
             if (client == null) {
-                return new ResponseEntity<>("this request is not possible", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(" client is null this request is not possible", HttpStatus.FORBIDDEN);
             }
 
             Set<Account> clientAccounts = client.getAccounts();
@@ -76,21 +79,22 @@ import java.util.Set;
                 return new ResponseEntity<>("Please enter a valid origin account", HttpStatus.FORBIDDEN);
             }
 
-
             if (accountOrigen.getBalance() < amount) {
                 return new ResponseEntity<>("insufficient founds", HttpStatus.FORBIDDEN);
             }
 
-            Transaction debit = new Transaction(TransactionType.DEBIT, "to " + destinationnumber + ": " + description, LocalDateTime.now(), Double.parseDouble("-" + amount));
-            Transaction credit = new Transaction(TransactionType.CREDIT, "from " + originnumber + ": " + description, LocalDateTime.now(), Double.parseDouble("+" + amount));
+            Double balanceTransactionDebit = accountOrigen.getBalance() - amount;
+            Transaction debit = new Transaction(TransactionType.DEBIT, "to " + destinationnumber + ": " + description, LocalDateTime.now(), amount,balanceTransactionDebit, true);
+            Double balanceTransactionCredit =  accountDestino.getBalance() + amount;
+            Transaction credit = new Transaction(TransactionType.CREDIT, "from " + originnumber + ": " + description, LocalDateTime.now(), amount, balanceTransactionCredit, true);
             accountOrigen.addTransaction(debit);
             accountDestino.addTransaction(credit);
-            accountOrigen.setBalance(accountOrigen.getBalance()-amount);
-            accountDestino.setBalance(accountDestino.getBalance()+amount);
-            transactionRepository.save(debit);
-            transactionRepository.save(credit);
-            accountRepository.save(accountOrigen);
-            accountRepository.save(accountDestino);
+            accountOrigen.setBalance(balanceTransactionDebit);
+            accountDestino.setBalance(balanceTransactionCredit);
+            transactionService.saveTransaction(debit);
+            transactionService.saveTransaction(credit);
+            accountService.saveAccount(accountOrigen);
+            accountService.saveAccount(accountDestino);
 
             return new ResponseEntity<>("Transaction ok", HttpStatus.OK);
         }

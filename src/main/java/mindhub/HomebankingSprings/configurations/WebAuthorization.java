@@ -23,16 +23,17 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
                                 "/WEB/pages/register.html","/WEB/js/login.js","/WEB/js/register.js").permitAll()
                         .antMatchers(HttpMethod.POST, "/api/clients","/api/login").permitAll()
                         .antMatchers("/WEB/pages/manager.html","/WEB/js/manager.js","/h2-console/**","/rest/**").hasAuthority("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
+                        .antMatchers(HttpMethod.POST, "/api/admin/loans").hasAuthority("ADMIN")
                         .antMatchers("/WEB/pages/account.html","/WEB/pages/accounts.html","/WEB/pages/cards.html",
                                 "/WEB/pages/create-card.html","/WEB/pages/account.html","/WEB/js/**","/WEB/pages/loansAplication.html").hasAuthority("CLIENT")
+                        .antMatchers(HttpMethod.PATCH, "/api/cards/modify").hasAuthority("CLIENT")
                          .antMatchers(HttpMethod.POST, "/api/clients/current/accounts","/api/client/current/cards","/api/transactions").hasAuthority("CLIENT")
                         .antMatchers(HttpMethod.GET, "/api/clients/current","/api/accounts/{id}","/api/clients/current/accounts").hasAuthority("CLIENT")
                         .antMatchers("/WEB/pages/accounts.html","/WEB/pages/transfer.html","/WEB/js/loansAplication.js").hasAuthority("CLIENT")
                         .antMatchers(HttpMethod.GET, "/api/accounts/**").hasAuthority("CLIENT")
                         .antMatchers(HttpMethod.GET, "/api/loans").hasAuthority("CLIENT")
-                        .antMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
-                        .anyRequest().denyAll();
+                        .antMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT");
+                        //.anyRequest().denyAll();
 
 
      // configuracion de authenticacion
@@ -54,7 +55,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         // .frameOptions
         http.headers().frameOptions().disable();
 
-        //si el usuario no esta autenticado
+
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
 

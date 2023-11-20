@@ -1,6 +1,7 @@
 package mindhub.HomebankingSprings.dtos;
 
 import mindhub.HomebankingSprings.models.Account;
+import mindhub.HomebankingSprings.models.AccountType;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,6 +13,8 @@ public class AccountDTO {
     private String number;
     private LocalDate creationDate;
     private double balance;
+    private boolean active;
+    private AccountType accountType;
     private Set<TransactionDTO> transactions;
 
     public AccountDTO(Account account) {
@@ -19,6 +22,8 @@ public class AccountDTO {
         id = account.getId();
         creationDate = account.getCreationDate();
         balance = account.getBalance();
+        active = account.isActive();
+        accountType = account.getAccountType();
         transactions = account.getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
     }
 
@@ -50,6 +55,13 @@ public class AccountDTO {
         this.balance = balance;
     }
 
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
     public Set<TransactionDTO> getTransactions() {
         return transactions;
     }

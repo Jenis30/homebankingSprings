@@ -17,17 +17,18 @@ public class ClientDTO {
         private Set<ClientLoanDTO>clientLoans;
         private Set<CardDTO>cards;
         public ClientDTO(Client client){
-            this.id = client.getId(); // asigno el ID del client que estoy pasando por parametro a traves del metodo get
+            this.id = client.getId();
             this.firstName = client.getFirstName();
             this.lastName = client.getLastName();
             this.email = client.getEmail();
             this.password = client.getPassword();
-            this.accounts= client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
+            this.accounts= client.getAccounts().stream().filter(account -> account.isActive()).map(account -> new AccountDTO(account)).collect(Collectors.toSet());
             this.clientLoans = client.getClientLoans().stream().map(clientLoan -> new ClientLoanDTO(clientLoan)).collect(Collectors.toSet());
-            this.cards = client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());
+            this.cards = client.getCards().stream().filter(card -> card.getActive()).map(card -> new CardDTO(card)).collect(Collectors.toSet());
         }
+        // si aplico un .filter antes del map para filtrar las cuentas activas en mi api solo van aparecer las cuentas activas
 
-        public String getFirstName() {
+    public String getFirstName() {
             return firstName;
         }
 

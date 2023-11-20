@@ -22,11 +22,6 @@ public class Client {
     private String lastName;
     private String email;
     private String password;
-
-
-
-    // metodos accesores protegemos los datos de acuerdo a lo que necesitemos
-
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER) // me muestra el cliente con las cuentas y lazi solo me muestra el cliente sin las cuentas
     private Set<Account>accounts = new HashSet<>();
 
@@ -54,9 +49,7 @@ public class Client {
 
     public long getId() {return id ; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() {return firstName;}
 
     public void setFirstName(String firstName) {this.firstName = firstName;}
 

@@ -50,7 +50,9 @@
                 <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
                    
                   <div class="flip-card" v-if="creditCards.length != 0" v-for="card of creditCards">
+                    <h6 style="color: black;" v-if="card.thruDate < currentDate.toLocaleDateString()"> card expired </h6>
                     <div class="flip-card-inner">
+                     
                         <div class="flip-card-front" :style="colorCards(card)">
                             <p  class="heading_8264">Bank-Finance</p>
                             <svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 48 48">
@@ -83,6 +85,7 @@
                             <p class="valid_thru">VALID THRU</p>
                             <p class="date_8264">{{card.thruDate}}</p>
                             <p class="name">{{card.cardHolder}}</p>
+                           
                         </div>
                         <div class="flip-card-back" :style="colorCards(card)">
                             <div class="strip"></div>
@@ -91,7 +94,9 @@
                               <p class="code">{{card.cvv}}</p>
                             </div>
                         </div>
+                      
                     </div>
+                    <button @click="deleteCard(card.id)">clear</button>
                 </div>
                 <div v-else> 
                   <h3>No credit cards</h3>
@@ -102,8 +107,10 @@
             <section  class="d-flex flex-column">
                 <h2 class="pt-4">Debit Card</h2>
                 <div class="d-flex flex-column gap-4 align-items-center m-3 containerCard">
-                  <div class="flip-card" v-if="creditCards.length != 0" v-for="card of debitCards">
+                  <div class="flip-card" v-if="debitCards.length != 0" v-for="card of debitCards">
+                    <h6 style="color: black;" v-if="card.thruDate < currentDate.toLocaleDateString()"> card expired </h6>
                     <div class="flip-card-inner">
+                     
                         <div class="flip-card-front" :style="colorCards(card)">
                             <p class="heading_8264">Bank-Finance</p>
                             <svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 48 48">
@@ -136,6 +143,7 @@
                             <p class="valid_thru">VALID THRU</p>
                             <p class="date_8264">{{card.thruDate}}</p>
                             <p class="name">{{card.cardHolder}}</p>
+                          
                         </div>
                         <div class="flip-card-back" :style="colorCards(card)">
                             <div class="strip"></div>
@@ -143,8 +151,12 @@
                             <div class="sstrip">
                               <p class="code">{{card.cvv}}</p>
                             </div>
+                         
                         </div>
+                       
                     </div>
+                    <button @click="deleteCard(card.id)">clear</button>
+                   
                 </div>
                 <div v-else> 
                   <h3>No debit cards</h3>
