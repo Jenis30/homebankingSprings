@@ -60,7 +60,8 @@ public class LoanController {
         Account accountOrigen = accountService.findByNumber(loanApplicationDTO.getNumberAccount());
         Double balanceTransactionCredit =  accountOrigen.getBalance() + amount;
         Transaction credit = new Transaction(TransactionType.CREDIT, "loan " + loan.getName() + " loan approved", LocalDateTime.now(), loanApplicationDTO.getAmount(),balanceTransactionCredit, true);
-        ClientLoan prestamo = new ClientLoan(amount1, loanApplicationDTO.getPayments());
+        Double currentAmout = amount1;
+        ClientLoan prestamo = new ClientLoan(amount1, loanApplicationDTO.getPayments(),currentAmout,loanApplicationDTO.getPayments());
 
         accountOrigen.setBalance(accountOrigen.getBalance() + loanApplicationDTO.getAmount());
         accountOrigen.addTransaction(credit);
@@ -108,10 +109,9 @@ public class LoanController {
 
         return  new ResponseEntity<>("Loan Created", HttpStatus.CREATED);
     }
-   /* @Transactional
+    @Transactional
     @PostMapping("/loans/payments")
-    public ResponseEntity<Object> payLoan(Authentication authentication, @RequestParam long idLoan , @RequestParam long idAccount ,
-                                          @RequestParam Double amount){
+    public ResponseEntity<Object> payLoan(Authentication authentication, @RequestParam long idLoan , @RequestParam long idAccount , @RequestParam Double amount){
         Client client = clientService.findClientByEmail(authentication.getName());
         ClientLoan clientLoan = clientLoanService.findById(idLoan);
         Account account = accountService.findAccountById(idAccount);
@@ -149,7 +149,7 @@ public class LoanController {
         }
 
         double currentBalanceAccountDebit = account.getBalance() - amount;
-        Transaction transaction = new Transaction(TransactionType.DEBIT,amount,"Canceled fee " + loan + " loan",LocalDateTime.now(),currentBalanceAccountDebit,true);
+        Transaction transaction = new Transaction(TransactionType.DEBIT,"Canceled fee " + loan + " loan",LocalDateTime.now(),amount,currentBalanceAccountDebit,true);
 
         clientLoan.setCurrentAmount(clientLoan.getCurrentAmount()-amount);
         clientLoan.setCurrentPayments(clientLoan.getCurrentPayments()-1);
@@ -159,5 +159,5 @@ public class LoanController {
         transactionService.saveTransaction(transaction);
         accountService.saveAccount(account);
         return new ResponseEntity<>("Payment made successfully",HttpStatus.CREATED);
-    }*/
+    }
 }

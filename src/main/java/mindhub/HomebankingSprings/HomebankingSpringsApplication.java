@@ -54,12 +54,12 @@ public class HomebankingSpringsApplication {
 
 			Loan loanMortgage = new Loan("Mortgage",500000.00, List.of(12,24,36,48,60),0.3);
 			loanRepository.save(loanMortgage);
-			Loan loanPersonal = new Loan("Staff", 10000.00, List.of( 6,12,24),0.4);
+			Loan loanPersonal = new Loan("Personal", 10000.00, List.of( 6,12,24),0.4);
 			loanRepository.save(loanPersonal);
 			Loan loanAutomation = new Loan("Automotive", 300000.00, List.of(6,12,24,36),0.2);
 			loanRepository.save(loanAutomation);
 
-			ClientLoan clientLoanOne = new ClientLoan(400000.00,60);
+			ClientLoan clientLoanOne = new ClientLoan(400000.00 + (400000.00 * loanMortgage.getPercentageInterest()),60,(400000.00 + (400000.00 * loanMortgage.getPercentageInterest())),60);
 			clientLoanRepository.save(clientLoanOne);
 			melba.addClientLoan(clientLoanOne);
 
@@ -67,7 +67,7 @@ public class HomebankingSpringsApplication {
 			clientLoanRepository.save(clientLoanOne);
 
 
-			ClientLoan clientLoanTwo = new ClientLoan(50000.00,12);
+			ClientLoan clientLoanTwo = new ClientLoan(50000.00 + (50000.00 * loanPersonal.getPercentageInterest()),12,(50000.00 + (50000.00 * loanPersonal.getPercentageInterest())),12);
 			clientLoanRepository.save(clientLoanTwo);
 			melba.addClientLoan(clientLoanTwo);
 
@@ -82,14 +82,14 @@ public class HomebankingSpringsApplication {
 			client1.addAccount(account2);
 			accountRepository.save(account2);
 
-			ClientLoan clientLoantree = new  ClientLoan (100.00, 24);
+			ClientLoan clientLoantree = new  ClientLoan (100000.00 + (100000.00 * loanPersonal.getPercentageInterest()), 24,(100000.00 + (100000.00 * loanPersonal.getPercentageInterest())),24 );
 			clientLoanRepository.save(clientLoantree);
-			melba.addClientLoan(clientLoantree);
+			client1.addClientLoan(clientLoantree);
 
 			loanPersonal.addClientLoan(clientLoantree);
 			clientLoanRepository.save(clientLoantree);
 
-			ClientLoan clientLoanFoor = new ClientLoan(200.000, 36);
+			ClientLoan clientLoanFoor = new ClientLoan(200000.00 + (200000.00 * loanAutomation.getPercentageInterest()), 36,(200000.00 + (200000.00 * loanAutomation.getPercentageInterest())),36 );
 			clientLoanRepository.save(clientLoanFoor);
 			melba.addClientLoan(clientLoanFoor);
 

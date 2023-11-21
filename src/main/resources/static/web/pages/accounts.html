@@ -95,6 +95,8 @@
             <th>Type</th>
             <th>Amount</th>
             <th>N° Quotas</th>
+            <th>Current Amount</th>
+            <th>Current Payments</th>
           </tr>
         </thead>
         <tbody>
@@ -102,9 +104,12 @@
             <td>{{loan.nameLoan}}</td>
             <td>{{ formatNumber(Number(loan.amount))}}</td>
             <td>{{loan.payments}}</td>
+            <td>{{ formatNumber(Number(loan.currentAmount))}}</td>
+            <td>{{loan.currentPayments}}</td>
           </tr>
         </tbody>
       </table>
+      <a type="button" href="./pay-loan.html" class="btn btn-primary">pay loan</a>
     </main>
 
     <footer class="foter">
